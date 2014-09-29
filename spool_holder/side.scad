@@ -1,20 +1,22 @@
 include <lib.scad>;
+include <parts.scad>;
 
-$fn=100;
-
+// Rim around the 
 rim_thickness = 1;
 rim_height = 1.05;
 
 standoff_thickness = 1;
 standoff_height = .6;
 
-// Amount off the table that the spool will rest
+// Amount off the table/surface that the spool will rest
 spool_clearance = 10;
 side_thickness = 5;
-tangent_angle = 55; // Don't go much lower than 50.
 
-// The angle to the humps on which the cut-out circle rests.
-// Imagine it as a wheel resting on pegs.
+// Angle that the spool rests on the bearings. Lowering the angle makes the 
+// coaster wider and shorter
+tangent_angle = 55;
+
+// The distance between the holes for the M8 bolts
 hole_separation = 2 * cos(tangent_angle) * (bearing_or + spool_or);
 
 // The radius of the two curves at the end of the bar.
@@ -22,14 +24,17 @@ hole_separation = 2 * cos(tangent_angle) * (bearing_or + spool_or);
 hr_max = (spool_or + spool_clearance) - (spool_or + bearing_or) * sin(tangent_angle);
 hump_radius = max(spool_clearance, bearing_or_t + rim_thickness, hr_max);
 
-// Double checking the bearing and spool
+// ****************************************************************************
+// Uncomment to see circles drawn for the bearing and spool; comment before rendering.
 // translate([hole_separation / 2, (bearing_or + spool_or)*sin(tangent_angle) , 0])
 // circle(spool_or);
 // translate([0, 0, side_thickness + standoff_height])
 // circle(bearing_or);
 // translate([hole_separation / 2, -hump_radius + spool_clearance / 2 , 0])
 // circle(spool_clearance / 2);
+// ****************************************************************************
 
+// The circular curve on the top (or bottom. I'm a scad file, not a cop)
 module curve() {
 	// 2 * cos(tangent_angle) * (r + hump_radius) = hole_separation
 	// ry = r
@@ -39,6 +44,7 @@ module curve() {
 		circle(r);
 }
 
+// Bar between the holes
 module bar() {
 	// ty = hump_radius * sin(45);
 	translate([0, -hump_radius, 0])
@@ -59,6 +65,7 @@ module silhouette() {
 	}
 }
 
+// small ring around the M8 bolt hole to keep the bearing from rubbing
 module standoff() {
 	pipe(standoff_height, standoff_thickness + bearing_ir_t, standoff_thickness);
 }

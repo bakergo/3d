@@ -1,15 +1,4 @@
-tolerance=.25;
-bearing_id = 8;
-bearing_od = 22;
-bearing_or = bearing_od / 2;
-bearing_id_t = bearing_id + 2 * tolerance;
-bearing_od_t = bearing_od + 2 * tolerance;
-bearing_ir_t = bearing_id / 2 + tolerance;
-bearing_or_t = bearing_od / 2 + tolerance;
-
-spool_id = 32;
-spool_or = spool_id / 2 + 84.75;
-spool_width = 64;
+$fn=100;
 
 module hollow_cylinder(height, or, ir) {
 	difference() {
