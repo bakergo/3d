@@ -3,15 +3,15 @@ include <lib.scad>;
 $fn=100;
 
 rim_thickness = 1;
-rim_height = 1;
+rim_height = 1.05;
 
 standoff_thickness = 1;
-standoff_height = .5;
+standoff_height = .6;
 
 // Amount off the table that the spool will rest
 spool_clearance = 10;
 side_thickness = 5;
-tangent_angle = 50; // Don't go much lower than 50.
+tangent_angle = 55; // Don't go much lower than 50.
 
 // The angle to the humps on which the cut-out circle rests.
 // Imagine it as a wheel resting on pegs.
@@ -63,20 +63,23 @@ module standoff() {
 	pipe(standoff_height, standoff_thickness + bearing_ir_t, standoff_thickness);
 }
 
-translate([0, 0, side_thickness])
-linear_extrude(rim_thickness)
-outline(1) silhouette();
-linear_extrude(side_thickness)
-difference() {
-	silhouette();
-	circle(bearing_id_t/2);
-	translate([hole_separation, 0, 0])
-	circle(bearing_id_t/2);
+module spool_holder_side() {
+	translate([0, 0, side_thickness])
+		linear_extrude(rim_thickness)
+		outline(1) silhouette();
+	linear_extrude(side_thickness)
+		difference() {
+			silhouette();
+			circle(bearing_id_t/2);
+			translate([hole_separation, 0, 0])
+				circle(bearing_id_t/2);
+		}
+
+	translate([0, 0, side_thickness])
+		standoff();
+	translate([hole_separation, 0, side_thickness])
+		standoff();
 }
 
-
-translate([0, 0, side_thickness])
-standoff();
-translate([hole_separation, 0, side_thickness])
-standoff();
+spool_holder_side();
 

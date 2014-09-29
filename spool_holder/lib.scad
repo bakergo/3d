@@ -1,5 +1,4 @@
 tolerance=.25;
-phi=1.618;
 bearing_id = 8;
 bearing_od = 22;
 bearing_or = bearing_od / 2;
