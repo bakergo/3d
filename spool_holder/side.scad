@@ -1,9 +1,13 @@
 include <lib.scad>;
 include <parts.scad>;
 
-// Rim around the 
+// Rim around the entire part?
 rim_thickness = 1;
 rim_height = 1.05;
+
+// Rim around the bearing, to keep the spool from falling off.
+bearing_rim_thickness = 1;
+bearing_rim_height = 2;
 
 standoff_thickness = 1;
 standoff_height = .6;
@@ -67,7 +71,8 @@ module silhouette() {
 
 // small ring around the M8 bolt hole to keep the bearing from rubbing
 module standoff() {
-	pipe(standoff_height, standoff_thickness + bearing_ir_t, standoff_thickness);
+	pipe(bearing_rim_height, bearing_or_t, bearing_rim_thickness);
+	pipe(standoff_height, bearing_ir_t, standoff_thickness);
 }
 
 module spool_holder_side() {

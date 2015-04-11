@@ -7,8 +7,8 @@ module hollow_cylinder(height, or, ir) {
 	}
 }
 
-module pipe(height, r, wall_thickness) {
-	hollow_cylinder(height, r, r-wall_thickness);
+module pipe(height, ir, wall_thickness) {
+	hollow_cylinder(height, ir+wall_thickness, ir);
 }
 
 // 2-dimensional ring of given radii.
