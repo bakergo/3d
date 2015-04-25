@@ -9,7 +9,7 @@ rim_height = 1.05;
 bearing_rim_thickness = 1;
 bearing_rim_height = 2;
 
-standoff_thickness = 1;
+standoff_thickness = 3;
 standoff_height = .6;
 
 // Amount off the table/surface that the spool will rest
@@ -18,7 +18,7 @@ side_thickness = 5;
 
 // Angle that the spool rests on the bearings. Lowering the angle makes the 
 // coaster wider and shorter
-tangent_angle = 55;
+tangent_angle = 60;
 
 // The distance between the holes for the M8 bolts
 hole_separation = 2 * cos(tangent_angle) * (bearing_or + spool_or);
