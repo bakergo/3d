@@ -1,4 +1,9 @@
-$fn=100;
+$fn=1000;
+top_pegs_x = 2;
+top_pegs_y = 3;
+stacked_on_pegs_x = 3;
+stacked_on_pegs_y = 3;
+
 peg_height = 1.7;
 peg_radius = 2.4;
 layer_height = 3.2;
@@ -10,8 +15,6 @@ peg_height_t = peg_height;
 peg_radius_t = peg_radius - tolerance;
 peg_separation = 8.0;
 
-stacked_on_pegs_x = 4;
-stacked_on_pegs_y = 3;
 stacked_on_pegs_x_lim = stacked_on_pegs_x - 1;
 stacked_on_pegs_y_lim = stacked_on_pegs_y - 1;
 
@@ -24,10 +27,8 @@ base_square = max(stacked_on_pegs_x, stacked_on_pegs_y) * peg_separation;
 base_square_t = base_square - side_play;
 
 // Number of pegs in the x direction
-peg_x = 4;
-peg_y = 3;
-peg_x_lim = peg_x - 1;
-peg_y_lim = peg_y - 1;
+peg_x_lim = top_pegs_x - 1;
+peg_y_lim = top_pegs_y - 1;
 bottom_peg_dia = sqrt(2*peg_separation*peg_separation) - 2 * peg_radius;
 bottom_peg_radius = bottom_peg_dia / 2;
 bottom_peg_radius_t = bottom_peg_radius - 2 * tolerance;
